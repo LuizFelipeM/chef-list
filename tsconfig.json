@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "declarationDir": "dist"
   },
-  "files": ["src/Chef-list.tsx"],
+  "files": ["src/Chef-list.tsx", "src/types/Recipe.tsx"],
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test*"]
 }
