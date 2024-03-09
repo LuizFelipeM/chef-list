@@ -3,7 +3,7 @@
     min-height: 3rem;
 }
 
-.max-2-lines {
+.two-lines {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -11,7 +11,7 @@
     -webkit-box-orient: vertical;
 }
 
-.max-3-lines {
+.three-lines {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;

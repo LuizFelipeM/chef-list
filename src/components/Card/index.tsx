@@ -21,7 +21,7 @@ export const Card: React.FC<CardProps> = ({ id, image, title, score, summary, ta
       </a>
     </div>
     <div className="card-content">
-      <a className="title is-4 max-2-lines" href={`${routes.RECIPE.replace(":id", id)}`}>
+      <a className="title is-4 two-lines" href={`${routes.RECIPE.replace(":id", id)}`}>
         {title}
       </a>
 
@@ -29,15 +29,16 @@ export const Card: React.FC<CardProps> = ({ id, image, title, score, summary, ta
         <div className="columns is-gapless m-0">
           {(new Array(5).fill(null)).map((_, i, arr) => (
             <span key={`${id}-${i}`}>
-              {i + 1 < arr.length * score ?
-                <i className="fa-solid fa-star" /> :
+              <i className={i + 1 < arr.length * score ?
+                "fa-solid fa-star" :
                 score % 1 >= 0.5 ?
-                  <i className="fa-regular fa-star-half-stroke"></i> :
-                  <i className="fa-regular fa-star" />}
+                  "fa-regular fa-star-half-stroke" :
+                  "fa-regular fa-star"}
+              />
             </span>)
           )}
         </div>
-        <p dangerouslySetInnerHTML={{ __html: summary }} className="max-3-lines" />
+        <p dangerouslySetInnerHTML={{ __html: summary }} className="three-lines" />
         <div className="tags">
           {tags.map((tag, i) => <span key={i} className="tag is-light">{tag}</span>)}
         </div>
