@@ -1,5 +1,4 @@
 import React from 'react'
-import { routes } from "@Chef/utility"
 import "./card.css"
 
 interface CardProps {
@@ -9,19 +8,20 @@ interface CardProps {
   score: number
   summary: string
   tags: string[]
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
-export const Card: React.FC<CardProps> = ({ id, image, title, score, summary, tags }) => (
+export const Card: React.FC<CardProps> = ({ id, image, title, score, summary, tags, onClick }) => (
   <div className="card">
     <div className="card-image">
-      <a href={`${routes.RECIPE.replace(":id", id)}`}>
+      <a onClick={onClick}>
         <figure className="image is-4by3">
           <img src={image} alt={`${title} image`} />
         </figure>
       </a>
     </div>
     <div className="card-content">
-      <a className="title is-4 two-lines" href={`${routes.RECIPE.replace(":id", id)}`}>
+      <a className="title is-4 two-lines" onClick={onClick}>
         {title}
       </a>
 

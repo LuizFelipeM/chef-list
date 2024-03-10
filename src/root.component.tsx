@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import _ from "lodash"
-import { routes, api, getRouteParams } from "@Chef/utility"
+import { routes, api, getRouteParams, state } from "@Chef/utility"
 import { Card } from "./components/Card"
 import { RecipeWithInformation } from "./types/Recipe"
+import * as singleSpa from "single-spa"
 
 export const Root: React.FC = (props) => {
   const [recipesLists, setRecipesLists] = useState<RecipeWithInformation[][]>([])
@@ -39,18 +40,25 @@ export const Root: React.FC = (props) => {
     <>
       {recipesLists.map((recipes, index) => (
         <div key={index} className="columns">
-          {recipes.map(({ id, image, title, spoonacularScore, summary, dishTypes }) =>
-            <div key={`${index}-${id}`} className="column is-3">
-              <Card
-                id={id}
-                image={image}
-                title={title}
-                score={spoonacularScore / 100}
-                summary={summary}
-                tags={dishTypes.slice(0, 2)}
-              />
-            </div>
-          )}
+          {recipes.map((recipe) => {
+            const { id, image, title, spoonacularScore, summary, dishTypes } = recipe
+            return (
+              <div key={`${index}-${id}`} className="column is-3">
+                <Card
+                  id={id}
+                  image={image}
+                  title={title}
+                  score={spoonacularScore / 100}
+                  summary={summary}
+                  tags={dishTypes.slice(0, 2)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    state.next({ recipe })
+                    singleSpa.navigateToUrl(routes.RECIPE.replace(":id", id))
+                  }}
+                />
+              </div>)
+          })}
         </div>
       ))}
       <nav className="pagination is-right" role="navigation" aria-label="pagination">
