@@ -1,48 +1,29 @@
-import React from 'react'
-import "./card.css"
+import React, { useEffect, useRef } from 'react'
+import { mountParcel } from '../../Chef-list';
+import { Card as VanillaCard } from "@Chef/styleguide";
 
 interface CardProps {
-  id: number
-  image: string
   title: string
-  score: number
-  summary: string
+  className?: string
   tags: string[]
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>
+  summary: string
+  stars: string[]
+  image: string
+  onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
-export const Card: React.FC<CardProps> = ({ id, image, title, score, summary, tags, onClick }) => (
-  <div className="card">
-    <div className="card-image">
-      <a onClick={onClick}>
-        <figure className="image is-4by3">
-          <img src={image} alt={`${title} image`} />
-        </figure>
-      </a>
-    </div>
-    <div className="card-content">
-      <a className="title is-4 two-lines" onClick={onClick}>
-        {title}
-      </a>
+export const Card: React.FC<CardProps> = (props) => {
+  const cardRef = useRef(null)
 
-      <div className="content">
-        <div className="columns is-gapless m-0">
-          {(new Array(5).fill(null)).map((_, i, arr) => (
-            <span key={`${id}-${i}`}>
-              <i className={i + 1 < arr.length * score ?
-                "fa-solid fa-star" :
-                score % 1 >= 0.5 ?
-                  "fa-regular fa-star-half-stroke" :
-                  "fa-regular fa-star"}
-              />
-            </span>)
-          )}
-        </div>
-        <p dangerouslySetInnerHTML={{ __html: summary }} className="three-lines" />
-        <div className="tags">
-          {tags.map((tag, i) => <span key={i} className="tag is-light">{tag}</span>)}
-        </div>
-      </div>
-    </div>
-  </div>
-)
+  useEffect(() => {
+    mountParcel(VanillaCard, {
+      domElement: cardRef.current,
+      ...props
+    });
+  }, [])
+
+
+  return (
+    <div ref={cardRef} />
+  )
+}
