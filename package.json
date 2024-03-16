@@ -1,5 +1,5 @@
 {
-  "name": "@Chef/list",
+  "name": "@Chef/search",
   "scripts": {
     "start": "webpack serve --port 9001",
     "start:standalone": "webpack serve --env standalone",
@@ -61,5 +61,5 @@
     "single-spa": "^5.9.3",
     "single-spa-react": "^4.3.1"
   },
-  "types": "dist/Chef-list.d.ts"
+  "types": "dist/Chef-search.d.ts"
 }

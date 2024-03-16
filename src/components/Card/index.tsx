@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { mountParcel } from '../../Chef-list';
 import { Card as VanillaCard } from "@Chef/styleguide";
+import { mountParcel } from '../../Chef-search';
 
 interface CardProps {
   title: string
