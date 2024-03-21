@@ -37,7 +37,7 @@ export const Root: React.FC = (props) => {
   }
 
   return (
-    <div className="container">
+    <>
       {recipesLists.map((recipes, index) => (
         <div key={index} className="columns">
           {recipes.map((recipe) => {
@@ -81,6 +81,6 @@ export const Root: React.FC = (props) => {
           <li><a className="pagination-link" aria-label="Goto page 86">86</a></li>
         </ul>
       </nav>
-    </div>
+    </>
   )
 }
