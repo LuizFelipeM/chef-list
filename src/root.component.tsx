@@ -4,23 +4,30 @@ import { routes, api, getRouteParams, state } from "@Chef/utility"
 import { RecipeWithInformation } from "./types/Recipe"
 import * as singleSpa from "single-spa"
 import { Card } from "./components/Card"
+import { Pagination } from "./components/Pagination"
 
 export const Root: React.FC = (props) => {
+  const recipesPerPage = 12
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [maxPages, setMaxPages] = useState(21)
   const [recipesLists, setRecipesLists] = useState<RecipeWithInformation[][]>([])
 
   useEffect(() => {
-    fetchRecipes()
-  }, [])
+    fetchRecipes(currentPage - 1)
+  }, [currentPage])
 
-  const fetchRecipes = async () => {
+
+  const fetchRecipes = async (offset: number) => {
     try {
       const { term } = getRouteParams(routes.SEARCH)
-      const { results } = await api.recipes
-        .search(term, 0, 12, {
+      const { results, totalResults } = await api.recipes
+        .search(term, offset, recipesPerPage, {
           addRecipeInformation: true,
           sort: "popularity",
           sortDirection: "desc"
         })
+
       const recipes = results.reduce((acc: RecipeWithInformation[][], curr: RecipeWithInformation) => {
         if (acc[acc.length - 1].length == 4) {
           return [...acc, [curr]]
@@ -30,6 +37,7 @@ export const Root: React.FC = (props) => {
         return acc
       }, [[]])
 
+      setMaxPages(Math.ceil(totalResults / recipesPerPage))
       setRecipesLists(recipes)
     } catch (error) {
       console.error(error)
@@ -68,19 +76,13 @@ export const Root: React.FC = (props) => {
           })}
         </div>
       ))}
-      <nav className="pagination is-right" role="navigation" aria-label="pagination">
-        <a className="pagination-previous">Previous</a>
-        <a className="pagination-next">Next page</a>
-        <ul className="pagination-list">
-          <li><a className="pagination-link" aria-label="Goto page 1">1</a></li>
-          <li><span className="pagination-ellipsis">&hellip;</span></li>
-          <li><a className="pagination-link" aria-label="Goto page 45">45</a></li>
-          <li><a className="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-          <li><a className="pagination-link" aria-label="Goto page 47">47</a></li>
-          <li><span className="pagination-ellipsis">&hellip;</span></li>
-          <li><a className="pagination-link" aria-label="Goto page 86">86</a></li>
-        </ul>
-      </nav>
+      <Pagination
+        currentPage={currentPage}
+        firstPage={1}
+        lastPage={maxPages}
+        onPageChange={setCurrentPage}
+      />
     </>
   )
 }
+
