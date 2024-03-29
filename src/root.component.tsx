@@ -5,40 +5,41 @@ import { RecipeWithInformation } from "./types/Recipe"
 import * as singleSpa from "single-spa"
 import { Card } from "./components/Card"
 import { Pagination } from "./components/Pagination"
+import { SearchResponse } from "./types/SearchResponse"
 
 export const Root: React.FC = (props) => {
   const recipesPerPage = 12
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [maxPages, setMaxPages] = useState(21)
-  const [recipesLists, setRecipesLists] = useState<RecipeWithInformation[][]>([])
+  const [lastPage, setLastPage] = useState(21)
+  const [recipesLists, setRecipesLists] = useState<RecipeWithInformation[]>([])
 
   useEffect(() => {
     fetchRecipes(currentPage - 1)
+      .then(({ results, totalResults }) => {
+        setLastPage(Math.ceil(totalResults / recipesPerPage) + 1)
+        setRecipesLists(results)
+      })
+  }, [])
+
+  useEffect(() => {
+    if (currentPage !== 1)
+      fetchRecipes(currentPage - 1)
+        .then(({ results }) => {
+          setRecipesLists(results)
+        })
   }, [currentPage])
 
 
-  const fetchRecipes = async (offset: number) => {
+  const fetchRecipes = async (offset: number): Promise<SearchResponse> => {
     try {
       const { term } = getRouteParams(routes.SEARCH)
-      const { results, totalResults } = await api.recipes
+      return await api.recipes
         .search(term, offset, recipesPerPage, {
           addRecipeInformation: true,
           sort: "popularity",
           sortDirection: "desc"
         })
-
-      const recipes = results.reduce((acc: RecipeWithInformation[][], curr: RecipeWithInformation) => {
-        if (acc[acc.length - 1].length == 4) {
-          return [...acc, [curr]]
-        }
-
-        acc[acc.length - 1].push(curr)
-        return acc
-      }, [[]])
-
-      setMaxPages(Math.ceil(totalResults / recipesPerPage))
-      setRecipesLists(recipes)
     } catch (error) {
       console.error(error)
     }
@@ -46,12 +47,12 @@ export const Root: React.FC = (props) => {
 
   return (
     <>
-      {recipesLists.map((recipes, index) => (
-        <div key={index} className="columns">
-          {recipes.map((recipe) => {
+      <div className="fixed-grid has-1-cols-mobile has-4-cols-tablet">
+        <div className="grid">
+          {recipesLists.map((recipe, index) => {
             const { id, image, title, spoonacularScore, summary, dishTypes } = recipe
             return (
-              <div key={`${index}-${id}`} className="column is-3">
+              <div key={`${index}-${id}`} className="cell">
                 <Card
                   image={image}
                   title={title}
@@ -75,11 +76,11 @@ export const Root: React.FC = (props) => {
               </div>)
           })}
         </div>
-      ))}
+      </div>
       <Pagination
         currentPage={currentPage}
         firstPage={1}
-        lastPage={maxPages}
+        lastPage={lastPage}
         onPageChange={setCurrentPage}
       />
     </>
