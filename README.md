@@ -10,7 +10,7 @@
 
 This project was created to learn a set of [techonologies](#technologies). They are implemented just for fun in a recipes search website called Chef.
 
-This repository is the Single-SPA Application responsible for providing a search page showing the search results that was previusly inputed in the [Search Bar Application](https://github.com/LuizFelipeM/chef-searchbar). It uses the utility functions provided by the [Utility Application](https://github.com/LuizFelipeM/chef-utility) and enables a quick view of plenty of recipes.
+This repository is the Single-SPA Application responsible for providing a search page showing the search results that was previusly inputed in the [Search Bar Application](https://github.com/LuizFelipeM/chef-searchbar). It uses the utility functions provided by the [Utility Application](https://github.com/LuizFelipeM/chef-utility) and enables a quick view of plenty of recipes. It utilizes [Chef-styleguide](https://github.com/LuizFelipeM/chef-styleguide) extensively due to its dependency on the Card and Card Skeleton components in the styleguide.
 
 ## Demo
 
