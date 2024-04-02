@@ -8,6 +8,8 @@
     Chef Search - Single-SPA Application
 </h1>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f5d81925-105f-459a-83e5-532bab7fd6a2/deploy-status)](https://app.netlify.com/sites/chef-search-page/deploys)
+
 This project was created to learn a set of [techonologies](#technologies). They are implemented just for fun in a recipes search website called Chef.
 
 This repository is the Single-SPA Application responsible for providing a search page showing the search results that was previusly inputed in the [Search Bar Application](https://github.com/LuizFelipeM/chef-searchbar). It uses the utility functions provided by the [Utility Application](https://github.com/LuizFelipeM/chef-utility) and enables a quick view of plenty of recipes. It utilizes [Chef-styleguide](https://github.com/LuizFelipeM/chef-styleguide) extensively due to its dependency on the Card and Card Skeleton components in the styleguide.
