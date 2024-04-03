@@ -1,0 +1,6 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    access-control-allow-origin = "https://cheffhub.netlify.app"
+    access-control-allow-methods = "GET"
+    access-control-allow-headers = "*"
