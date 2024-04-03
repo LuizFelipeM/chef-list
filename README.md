@@ -3,20 +3,20 @@
         width="35"
         alt="bowl food solid"
         title="bowl food solid"
-        src="https://raw.githubusercontent.com/LuizFelipeM/chef-root/master/src/assets/bowl-food-solid.svg"
+        src="https://raw.githubusercontent.com/LuizFelipeM/cheff-root/master/src/assets/bowl-food-solid.svg"
     />
-    Chef Search - Single-SPA Application
+    Cheff Search - Single-SPA Application
 </h1>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f5d81925-105f-459a-83e5-532bab7fd6a2/deploy-status)](https://app.netlify.com/sites/chef-search-page/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f5d81925-105f-459a-83e5-532bab7fd6a2/deploy-status)](https://app.netlify.com/sites/cheff-search-page/deploys)
 
-This project was created to learn a set of [techonologies](#technologies). They are implemented just for fun in a recipes search website called Chef.
+This project was created to learn a set of [techonologies](#technologies). They are implemented just for fun in a recipes search website called Cheff.
 
-This repository is the Single-SPA Application responsible for providing a search page showing the search results that was previusly inputed in the [Search Bar Application](https://github.com/LuizFelipeM/chef-searchbar). It uses the utility functions provided by the [Utility Application](https://github.com/LuizFelipeM/chef-utility) and enables a quick view of plenty of recipes. It utilizes [Chef-styleguide](https://github.com/LuizFelipeM/chef-styleguide) extensively due to its dependency on the Card and Card Skeleton components in the styleguide.
+This repository is the Single-SPA Application responsible for providing a search page showing the search results that was previusly inputed in the [Search Bar Application](https://github.com/LuizFelipeM/cheff-searchbar). It uses the utility functions provided by the [Utility Application](https://github.com/LuizFelipeM/cheff-utility) and enables a quick view of plenty of recipes. It utilizes [Cheff-styleguide](https://github.com/LuizFelipeM/cheff-styleguide) extensively due to its dependency on the Card and Card Skeleton components in the styleguide.
 
 ## Demo
 
-If you want to see this and the other 7 applications in action access Chef [here](https://link-to-chef).
+If you want to see this and the other 7 applications in action access Cheff [here](https://cheffhub.netlify.app/).
 
 ## Development process
 
@@ -26,14 +26,14 @@ You can see the whole development process documented on my [medium post](https:/
 
 The microfrontend architechture let each application be updated and deployed independently without affecting others.
 
-- [Chef-root](https://github.com/LuizFelipeM/chef-root) - Root Config Application
-- [Chef-home](https://github.com/LuizFelipeM/chef-home) - React Application
-- **(This Repo)**[Chef-search](https://github.com/LuizFelipeM/chef-search) - React Application
-- [Chef-recipe](https://github.com/LuizFelipeM/chef-recipe) - Angular Application
-- [Chef-carousel](https://github.com/LuizFelipeM/chef-carousel) - Svelte Application
-- [Chef-searchbar](https://github.com/LuizFelipeM/chef-searchbar) - Vue Application
-- [Chef-styleguide](https://github.com/LuizFelipeM/chef-styleguide) - Vanilla JS/Mustache Application
-- [Chef-utility](https://github.com/LuizFelipeM/chef-utility) - Typescript Application
+- [Cheff-root](https://github.com/LuizFelipeM/cheff-root) - Root Config Application
+- [Cheff-home](https://github.com/LuizFelipeM/cheff-home) - React Application
+- **(This Repo)** [Cheff-search](https://github.com/LuizFelipeM/cheff-search) - React Application
+- [Cheff-recipe](https://github.com/LuizFelipeM/cheff-recipe) - Angular Application
+- [Cheff-carousel](https://github.com/LuizFelipeM/cheff-carousel) - Svelte Application
+- [Cheff-searchbar](https://github.com/LuizFelipeM/cheff-searchbar) - Vue Application
+- [Cheff-styleguide](https://github.com/LuizFelipeM/cheff-styleguide) - Vanilla JS/Mustache Application
+- [Cheff-utility](https://github.com/LuizFelipeM/cheff-utility) - Typescript Application
 
 ## Technologies
 
